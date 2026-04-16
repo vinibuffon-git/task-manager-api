@@ -2,22 +2,22 @@
 
 REST API para gerenciamento de tarefas desenvolvida com **Java + Spring Boot + PostgreSQL + Docker**.
 
-Este projeto foi desenvolvido com foco em **portfólio backend**, demonstrando a construção de uma API RESTful com operações CRUD completas, integração com banco relacional e documentação via Swagger.
+Este projeto foi desenvolvido com foco em **portfólio backend**, demonstrando a construção de uma API RESTful com operações CRUD completas, integração com banco relacional, autenticação básica e documentação via Swagger.
 
 ---
 
 ## 🚀 Tecnologias utilizadas
 
-- Java 21
-- Spring Boot
-- Spring Web
-- Spring Data JPA
-- Spring Security
-- PostgreSQL
-- Docker
-- Swagger / OpenAPI
-- Lombok
-- Maven
+* Java 21+
+* Spring Boot
+* Spring Web
+* Spring Data JPA
+* Spring Security
+* PostgreSQL
+* Docker
+* Swagger / OpenAPI
+* Lombok
+* Maven
 
 ---
 
@@ -25,18 +25,33 @@ Este projeto foi desenvolvido com foco em **portfólio backend**, demonstrando a
 
 A API permite:
 
-- Criar tarefas
-- Listar tarefas
-- Atualizar tarefas
-- Excluir tarefas
+* Criar tarefas
+* Listar tarefas
+* Atualizar tarefas
+* Excluir tarefas
 
 Cada tarefa contém:
 
-- `id`
-- `title`
-- `description`
-- `status`
-- `priority`
+* `id`
+* `title`
+* `description`
+* `status`
+* `priority`
+
+---
+
+## 🔐 Autenticação
+
+A aplicação utiliza autenticação básica com **Spring Security**.
+
+### Credenciais padrão
+
+```text
+Usuário: admin
+Senha: 123456
+```
+
+Essas credenciais são utilizadas para acessar os endpoints protegidos da API.
 
 ---
 
@@ -61,8 +76,16 @@ src/main/java/com/vinicius/taskmanager
 
 ### Subir o container
 
+### Windows
+
 ```bash
 docker compose up -d
+```
+
+### Linux Mint / Ubuntu
+
+```bash
+docker-compose up -d
 ```
 
 ### Verificar se está rodando
@@ -71,13 +94,35 @@ docker compose up -d
 docker ps
 ```
 
+O PostgreSQL deve estar exposto na porta:
+
+```text
+5433
+```
+
+---
+
+## ⚙️ Configuração do banco
+
+```yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/taskdb
+    username: postgres
+    password: 123456
+```
+
 ---
 
 ## ▶️ Como executar o projeto
 
 Execute a classe principal:
 
-`TaskmanagerApplication.java`
+```text
+TaskmanagerApplication.java
+```
+
+Ou rode pela IDE.
 
 ---
 
@@ -85,16 +130,18 @@ Execute a classe principal:
 
 Com a aplicação rodando, acesse:
 
-`http://localhost:8080/swagger-ui/index.html`
+```text
+http://localhost:8080/swagger-ui/index.html
+```
 
 ---
 
 ## 🔗 Endpoints disponíveis
 
-- `POST /tasks`
-- `GET /tasks`
-- `PUT /tasks/{id}`
-- `DELETE /tasks/{id}`
+* `POST /tasks`
+* `GET /tasks`
+* `PUT /tasks/{id}`
+* `DELETE /tasks/{id}`
 
 ---
 
@@ -108,6 +155,49 @@ Com a aplicação rodando, acesse:
   "priority": "HIGH"
 }
 ```
+
+---
+
+## 💻 Como testar
+
+### Criar tarefa
+
+Use o endpoint:
+
+```text
+POST /tasks
+```
+
+### Listar tarefas
+
+```text
+GET /tasks
+```
+
+### Atualizar tarefa
+
+```text
+PUT /tasks/{id}
+```
+
+### Excluir tarefa
+
+```text
+DELETE /tasks/{id}
+```
+
+---
+
+## 🎯 Objetivo do projeto
+
+Este projeto foi desenvolvido com o objetivo de demonstrar conhecimentos em:
+
+* desenvolvimento backend com Java
+* APIs REST
+* persistência com PostgreSQL
+* Docker
+* segurança com Spring Security
+* documentação de APIs
 
 ---
 

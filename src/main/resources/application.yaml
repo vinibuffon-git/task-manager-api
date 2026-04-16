@@ -1,6 +1,11 @@
 spring:
+  security:
+    user:
+      name: admin
+      password: 123456
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/taskdb
+    url: jdbc:postgresql://localhost:5433/taskdb
     username: postgres
     password: 123456
     driver-class-name: org.postgresql.Driver
